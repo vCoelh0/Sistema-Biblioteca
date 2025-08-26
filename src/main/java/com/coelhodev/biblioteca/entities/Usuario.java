@@ -1,8 +1,12 @@
 package com.coelhodev.biblioteca.entities;
 
+import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
+import jakarta.persistence.Table;
 
+@Entity
+@Table(name="tb_usuario")
 public class Usuario {
 
 	private Long id;

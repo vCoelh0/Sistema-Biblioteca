@@ -3,8 +3,13 @@ package com.coelhodev.biblioteca.entities;
 import java.util.HashSet;
 import java.util.Set;
 
+import jakarta.persistence.Entity;
 import jakarta.persistence.ManyToMany;
+import jakarta.persistence.Table;
+import java.time.LocalDate;
 
+@Entity
+@Table(name="tb_emprestimo")
 public class Emprestimo {
 
 	 public Long id;
@@ -15,8 +20,8 @@ public class Emprestimo {
 	 @ManyToMany(mappedBy = "Livro")
 	 private Set<Livro> livros = new HashSet<>();
 	 
-	 private localDate dataEmprestimo;
-	 private localDate dataDevolucao;
+	 private LocalDate dataEmprestimo;
+	 private LocalDate dataDevolucao;
 
 	 
 	 
@@ -28,8 +33,8 @@ public class Emprestimo {
 
 
 
-	public Emprestimo(Long id, Set<Usuario> usuario, Set<Livro> livros, localDate dataEmprestimo,
-			localDate dataDevolucao) {
+	public Emprestimo(Long id, Set<Usuario> usuario, Set<Livro> livros, LocalDate dataEmprestimo,
+			LocalDate dataDevolucao) {
 	
 		this.id = id;
 		this.usuario = usuario;
@@ -75,25 +80,25 @@ public class Emprestimo {
 
 
 
-	public localDate getDataEmprestimo() {
+	public LocalDate getDataEmprestimo() {
 		return dataEmprestimo;
 	}
 
 
 
-	public void setDataEmprestimo(localDate dataEmprestimo) {
+	public void setDataEmprestimo(LocalDate dataEmprestimo) {
 		this.dataEmprestimo = dataEmprestimo;
 	}
 
 
 
-	public localDate getDataDevolucao() {
+	public LocalDate getDataDevolucao() {
 		return dataDevolucao;
 	}
 
 
 
-	public void setDataDevolucao(localDate dataDevolucao) {
+	public void setDataDevolucao(LocalDate dataDevolucao) {
 		this.dataDevolucao = dataDevolucao;
 	}
 

@@ -1,5 +1,10 @@
 package com.coelhodev.biblioteca.entities;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
+
+@Entity
+@Table(name="tb_livro")
 public class Livro {
 
 	private Long id;
