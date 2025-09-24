@@ -1,18 +1,38 @@
 package com.coelhodev.biblioteca.entities;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
 
 @Entity
 @Table(name="tb_livro")
 public class Livro {
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+	
 	private String titulo;
 	private String autor;
 	private int anoPublicacao;
 	private String categoria;
 	private int quantidade;
+	
+	@ManyToMany
+	@JoinTable(
+			name = "livro_emprestimo",
+			joinColumns = @JoinColumn(name = "livro_id"),
+			inverseJoinColumns = @JoinColumn(name = "emprestimo_id")
+			)
+	private List<Emprestimo> emprestimos = new ArrayList<>();
 	
 	
 	
@@ -24,15 +44,20 @@ public class Livro {
 
 
 
-	public Livro(Long id, String titulo, String autor, int anoPublicacao, String categoria, int quantidade) {
-		super();
+	public Livro(Long id, String titulo, String autor, int anoPublicacao, String categoria, int quantidade,
+		List<Emprestimo> emprestimos) {
 		this.id = id;
 		this.titulo = titulo;
 		this.autor = autor;
 		this.anoPublicacao = anoPublicacao;
 		this.categoria = categoria;
 		this.quantidade = quantidade;
+		this.emprestimos = emprestimos;
 	}
+
+
+
+
 
 
 

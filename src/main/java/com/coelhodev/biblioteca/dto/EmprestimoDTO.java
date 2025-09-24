@@ -13,13 +13,13 @@ import com.coelhodev.biblioteca.entities.Usuario;
 public class EmprestimoDTO {
 
 	 public Long id;
-	 private Set<Usuario> usuario = new HashSet<>();
+	 private Usuario usuario;
 	 private Set<Livro> livros = new HashSet<>();
 	 private LocalDate dataEmprestimo;
 	 private LocalDate dataDevolucao;
 
 	 
-	 public EmprestimoDTO(Long id, Set<Usuario> usuario, Set<Livro> livros, LocalDate dataEmprestimo, LocalDate dataDevolucao) {
+	 public EmprestimoDTO(Long id, Usuario usuario, Set<Livro> livros, LocalDate dataEmprestimo, LocalDate dataDevolucao) {
 		this.id = id;
 		this.usuario = usuario;
 		this.livros = livros;
@@ -36,13 +36,11 @@ public class EmprestimoDTO {
 	 }
 	 
 	 
-	 
-	 
 	//GETTERS
 	public Long getId() {
 		return id;
 	}
-	public Set<Usuario> getUsuario() {
+	public Usuario getUsuario() {
 		return usuario;
 	}
 	public Set<Livro> getLivros() {

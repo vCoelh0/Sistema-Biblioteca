@@ -1,23 +1,31 @@
 package com.coelhodev.biblioteca.entities;
 
+import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Set;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToMany;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
-import java.time.LocalDate;
 
 @Entity
 @Table(name="tb_emprestimo")
 public class Emprestimo {
-
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	 public Long id;
 	 
-	 @ManyToMany(mappedBy = "Usuario")
-	 private Set<Usuario> usuario = new HashSet<>();
+	 @ManyToOne()
+	 @JoinColumn(name = "usuario_id")
+	 private Usuario usuario;
 	 
-	 @ManyToMany(mappedBy = "Livro")
+	 @ManyToMany(mappedBy = "emprestimos")
 	 private Set<Livro> livros = new HashSet<>();
 	 
 	 private LocalDate dataEmprestimo;
@@ -32,16 +40,17 @@ public class Emprestimo {
 	 }
 
 
-
-	public Emprestimo(Long id, Set<Usuario> usuario, Set<Livro> livros, LocalDate dataEmprestimo,
-			LocalDate dataDevolucao) {
-	
+	public Emprestimo(Long id, Usuario usuario, Set<Livro> livros, LocalDate dataEmprestimo, LocalDate dataDevolucao) {
 		this.id = id;
 		this.usuario = usuario;
 		this.livros = livros;
 		this.dataEmprestimo = dataEmprestimo;
 		this.dataDevolucao = dataDevolucao;
 	}
+
+
+
+
 
 
 	public Long getId() {
@@ -56,13 +65,13 @@ public class Emprestimo {
 
 
 
-	public Set<Usuario> getUsuario() {
+	public Usuario getUsuario() {
 		return usuario;
 	}
 
 
 
-	public void setUsuario(Set<Usuario> usuario) {
+	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
 	}
 
