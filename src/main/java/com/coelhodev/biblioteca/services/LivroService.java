@@ -36,5 +36,19 @@ public class LivroService {
 		
 	}
 	
+	public LivroDTO atualizar (Long id, LivroDTO dto) {
+		Livro livro = repository.findById(id)
+				.orElseThrow(()-> new RuntimeException("Livro não encontrado"));
+		
+		livro.setTitulo(dto.getTitulo());
+		livro.setAutor(dto.getAutor());
+		livro.setCategoria(dto.getCategoria());
+		livro.setAnoPublicacao(dto.getAnoPublicacao());
+		livro.setQuantidade(dto.getQuantidade());
+		livro = repository.save(livro);
+		
+		return new LivroDTO(livro);
+	}
+	
 	
 }
