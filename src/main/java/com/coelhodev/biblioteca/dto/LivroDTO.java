@@ -11,6 +11,10 @@ public class LivroDTO {
 	private String categoria;
 	private int quantidade;
 	
+	public LivroDTO() {
+		
+	}
+	
 	public LivroDTO(Long id, String titulo, String autor, int anoPublicacao, String categoria, int quantidade) {
 		this.id = id;
 		this.titulo = titulo;
@@ -23,6 +27,7 @@ public class LivroDTO {
 	public LivroDTO(Livro entity) {
 		id = entity.getId();
 		titulo = entity.getTitulo();
+		autor = entity.getAutor();
 		anoPublicacao = entity.getAnoPublicacao();
 		categoria = entity.getCategoria();
 		quantidade = entity.getQuantidade();
