@@ -50,5 +50,8 @@ public class LivroService {
 		return new LivroDTO(livro);
 	}
 	
+	 public void deletar(Long id) {
+	        repository.deleteById(id);
+	    }
 	
 }
